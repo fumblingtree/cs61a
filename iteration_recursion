@@ -1,0 +1,23 @@
+#Issue: Print out number of attempts in reaching a secret number implicitly nested, using iterative or binary methods. 
+#Source: Summer 2015 Midterm 1 
+***Method 1: Using iteration*** 
+def make_direction(secret): 
+    def helper(guess): 
+        if secret < guess:
+        return -1
+    elif secret > guess: 
+        return 1 
+    else: 
+        return 0 
+    return helper 
+        
+def iterative_search(low, high, direction): #assume that direction inputs a function call make_direction())
+    guess, count = (low+high)//2, 1 #always start guessing from the medium number 
+    sign = direction(guess) 
+    while sign != 0: 
+        guess += sign 
+        count += 1 
+        sign = direction(guess)
+    return count 
+    
+***Method 2: Using binary recursion***
